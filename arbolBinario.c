@@ -59,7 +59,7 @@ void amplitud(arbolBin_t * a){
             desencolar(&cola, &aux);
             printf("%c ", aux->elem);
             if (aux-> != NULL){
-                encolar (%cola, aux->izq);
+                encolar (&cola, aux->izq);
             }
             if (aux->der != NULL){
                 desencolar(&cola, aux->der);
@@ -78,9 +78,12 @@ int esVacia(cola_t *cola) {
 
 void encolar(cola_t **cola, arbolBin_t *elem) {
     cola_t *nuevo;
-    nuevo = (cola_t) malloc(sizeof(cola_t));
+    nuevo = (cola_t *)malloc(sizeof(cola_t));
+    if (nuevo == NULL) {
+        return;
+    }
     nuevo->clave = elem;
-    nuevo-sig = NULL;
+    nuevo->sig = NULL;
 
     if (*cola == NULL){
         *cola = nuevo;
