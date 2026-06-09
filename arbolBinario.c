@@ -68,6 +68,14 @@ void amplitud(arbolBin_t * a){
     }
 }
 
+void crearCola(cola_t **cola) {
+    *cola = NULL;
+}
+
+int esVacia(cola_t *cola) {
+    return (cola == NULL);
+}
+
 void encolar(cola_t **cola, arbolBin_t *elem) {
     cola_t *nuevo;
     nuevo = (cola_t) malloc(sizeof(cola_t));
