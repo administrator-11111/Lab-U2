@@ -58,7 +58,7 @@ void amplitud(arbolBin_t * a){
         while (!esVacia(cola)) {
             desencolar(&cola, &aux);
             printf("%c ", aux->elem);
-            if (aux-> != NULL){
+            if (aux->izq != NULL){
                 encolar (&cola, aux->izq);
             }
             if (aux->der != NULL){
