@@ -4,7 +4,7 @@
 typedef struct arbolBin {
     char elem;
     struct arbolBin *izq;
-    struct arbol *der;
+    struct arbolBin *der;
 } arbolBin_t;
 
 typedef struct cola {
@@ -21,13 +21,107 @@ int esVacia(cola_t *cola);
 void encolar(cola_t **cola, arbolBin_t *elem);
 void desencolar(cola_t **cola, arbolBin_t **elem);
 
-int main(){
+int main() {
+    arbolBin_t *a, *b, *c, *d, *e, *f, *g, *h;
+    arbolBin_t *i, *j, *k, *l, *m, *n, *o, *p;
+
+    // validando memoria
+    a=(arbolBin_t *)malloc(sizeof(arbolBin_t));
+    b=(arbolBin_t *)malloc(sizeof(arbolBin_t));
+    c=(arbolBin_t *)malloc(sizeof(arbolBin_t));
+    d=(arbolBin_t *)malloc(sizeof(arbolBin_t));
+    e=(arbolBin_t *)malloc(sizeof(arbolBin_t));
+    f=(arbolBin_t *)malloc(sizeof(arbolBin_t));
+    g=(arbolBin_t *)malloc(sizeof(arbolBin_t));
+    h=(arbolBin_t *)malloc(sizeof(arbolBin_t));
+    i=(arbolBin_t *)malloc(sizeof(arbolBin_t));
+    j=(arbolBin_t *)malloc(sizeof(arbolBin_t));
+    k=(arbolBin_t *)malloc(sizeof(arbolBin_t));
+    l=(arbolBin_t *)malloc(sizeof(arbolBin_t));
+    m=(arbolBin_t *)malloc(sizeof(arbolBin_t));
+    n=(arbolBin_t *)malloc(sizeof(arbolBin_t));
+    o=(arbolBin_t *)malloc(sizeof(arbolBin_t));
+    p=(arbolBin_t *)malloc(sizeof(arbolBin_t));
+
+    a->elem='a';
+    a->izq=b;
+    a->der=c;
+
+    b->elem='b';
+    b->izq=d;
+    b->der=e;
+
+    c->elem='c';
+    c->izq=f;
+    c->der=g;
+
+    d->elem='d';
+    d->izq=h;
+    d->der=i;
+
+    e->elem='e';
+    e->izq=NULL;
+    e->der=j;
+
+    f->elem='f';
+    f->izq=NULL;
+    f->der=k;
+
+    g->elem='g';
+    g->izq=NULL;
+    g->der=l;
+
+    h->elem='h';
+    h->izq=NULL;
+    h->der=NULL;
+
+    i->elem='i';
+    i->izq=m;
+    i->der=n;
+
+    j->elem='j';
+    j->izq=NULL;
+    j->der=NULL;
+
+    k->elem='k';
+    k->izq=NULL;
+    k->der=NULL;
+
+    l->elem='l';
+    l->izq=o;
+    l->der=p;
+
+    m->elem='m';
+    m->izq=NULL;
+    m->der=NULL;
+
+    n->elem='n';
+    n->izq=NULL;
+    n->der=NULL;
+
+    o->elem='o';
+    o->izq=NULL;
+    o->der=NULL;
+
+    p->elem='p';
+    p->izq=NULL;
+    p->der=NULL;
+
+    printf("\nSe inicia el recorrido en preorden\n");
+    preOrden(a);
+    printf("\nSe inicia el recorrido en inorden\n");
+    inOrden(a);
+    printf("\nSe inicia el recorrido en postorden\n");
+    postOrden(a);
+    printf("\nSe inicia el recorrido en amplitud\n");
+    amplitud(a);
+
     return 0;
 }
 
 void preOrden(arbolBin_t * a){
     if (a != NULL) {
-        printf("%c\n", a->elem);
+        printf("%c ", a->elem);
         preOrden(a->izq);
         preOrden(a->der);
     }
@@ -37,7 +131,7 @@ void inOrden(arbolBin_t * a){
     if (a != NULL) { 
         inOrden(a->izq);
         printf("%c ", a->elem);
-        inOrden(a->der)
+        inOrden(a->der);
     }
 }
 
@@ -62,7 +156,7 @@ void amplitud(arbolBin_t * a){
                 encolar (&cola, aux->izq);
             }
             if (aux->der != NULL){
-                desencolar(&cola, aux->der);
+                encolar(&cola, aux->der);
             }
         }
     }
