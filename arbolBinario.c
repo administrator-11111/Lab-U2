@@ -28,7 +28,7 @@ int main(){
 void preOrden(arbolBin_t * a){
     if (a != NULL) {
         printf("%c\n", a->elem);
-        prePrdem(a->izq);
+        preOrden(a->izq);
         preOrden(a->der);
     }
 }
