@@ -41,7 +41,7 @@ void inOrden(arbolBin_t * a){
     }
 }
 
-void postOrden(arbolBin_ * a){
+void postOrden(arbolBin_t * a){
     if (a != NULL) {
         postOrden(a->izq);
         postOrden(a->der);
@@ -62,8 +62,34 @@ void amplitud(arbolBin_t * a){
                 encolar (%cola, aux->izq);
             }
             if (aux->der != NULL){
-                encolar(&cola, aux->der);
+                desencolar(&cola, aux->der);
             }
         }
     }
+}
+
+void encolar(cola_t **cola, arbolBin_t *elem) {
+    cola_t *nuevo;
+    nuevo = (cola_t) malloc(sizeof(cola_t));
+    nuevo->clave = elem;
+    nuevo-sig = NULL;
+
+    if (*cola == NULL){
+        *cola = nuevo;
+    }
+    else {
+        cola_t *temp = *cola;
+        while (temp->sig != NULL) {
+            temp = temp->sig;
+        }
+        temp->sig = nuevo;
+    }
+}
+
+void desencolar(cola_t **cola1, arbolBin_t **elem) {
+    cola_t *aux;
+    *elem = (*cola1)->clave;
+    aux = *cola1;
+    *cola1 = (*cola1)->sig;
+    free(aux);
 }
